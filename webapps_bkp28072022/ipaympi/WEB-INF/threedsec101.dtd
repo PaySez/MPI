@@ -1,0 +1,123 @@
+<!--
+**********************************************************************
+DTD for 3-D Secure Messages
+Version 1.0.1
+**********************************************************************
+-->
+<!ELEMENT ThreeDSecure (Message)*>
+<!ELEMENT Message ((CRReq | CRRes | VEReq | VERes | PAReq |
+(PARes, Signature) | Error))>
+<!ATTLIST Message id CDATA #REQUIRED >
+<!ELEMENT CRReq (version, Merchant, serialNumber?)>
+<!ELEMENT CRRes (version, CR*, serialNumber, IReq?)>
+<!ELEMENT VEReq (version, pan, Merchant, Browser?, Extension*)>
+<!ELEMENT VERes (version, CH, url?, protocol*, IReq?, Extension*)>
+<!ELEMENT PAReq (version, Merchant, Purchase, CH, Extension*)>
+<!ELEMENT PARes (version, Merchant, Purchase, pan, TX, IReq?, Extension*)>
+<!ATTLIST PARes id CDATA #REQUIRED>
+<!ELEMENT Error (version, errorCode, errorMessage, errorDetail, vendorCode?)>
+<!ELEMENT Browser (deviceCategory?, accept?, userAgent?)>
+<!ELEMENT CR (begin, end, action)>
+<!ELEMENT CH (enrolled?, acctID?, expiry?)>
+<!ELEMENT IReq (iReqCode, iReqDetail?, vendorCode?)>
+<!ELEMENT Merchant (acqBIN, merID, password?, name?, country?, url?)>
+<!ELEMENT Purchase (xid, date, amount?, purchAmount, currency, exponent, desc?, Recur?, install?)>
+<!ELEMENT Recur (frequency, endRecur)>
+<!ELEMENT TX (time, status, cavv?, eci?, cavvAlgorithm?)>
+<!ELEMENT Extension ANY>
+<!ATTLIST Extension id CDATA #REQUIRED critical (true | false) #REQUIRED >
+<!ELEMENT accept (#PCDATA)>
+<!ELEMENT acctID (#PCDATA)>
+<!ELEMENT action (#PCDATA)>
+<!ELEMENT acqBIN (#PCDATA)>
+<!ELEMENT amount (#PCDATA)>
+<!ELEMENT begin (#PCDATA)>
+<!ELEMENT cavv (#PCDATA)>
+<!ELEMENT cavvAlgorithm (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT currency (#PCDATA)>
+<!ELEMENT date (#PCDATA)>
+<!ELEMENT desc (#PCDATA)>
+<!ELEMENT deviceCategory (#PCDATA)>
+<!ELEMENT eci (#PCDATA)>
+<!ELEMENT end (#PCDATA)>
+<!ELEMENT endRecur (#PCDATA)>
+<!ELEMENT enrolled (#PCDATA)>
+<!ELEMENT errorCode (#PCDATA)>
+<!ELEMENT errorDetail (#PCDATA)>
+<!ELEMENT errorMessage (#PCDATA)>
+<!ELEMENT expiry (#PCDATA)>
+<!ELEMENT exponent (#PCDATA)>
+<!ELEMENT frequency (#PCDATA)>
+<!ELEMENT install (#PCDATA)>
+<!ELEMENT iReqCode (#PCDATA)>
+<!ELEMENT iReqDetail (#PCDATA)>
+<!ELEMENT merID (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT pan (#PCDATA)>
+<!ELEMENT password (#PCDATA)>
+<!ELEMENT protocol (#PCDATA)>
+<!ELEMENT purchAmount (#PCDATA)>
+<!ELEMENT serialNumber (#PCDATA)>
+<!ELEMENT status (#PCDATA)>
+<!ELEMENT time (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT userAgent (#PCDATA)>
+<!ELEMENT vendorCode (#PCDATA)>
+<!ELEMENT version (#PCDATA)>
+<!ELEMENT xid (#PCDATA)>
+<!--
+**********************************************************************
+DTD for XML Signatures
+http://www.w3.org/TR/2001/CR-xmldsig-core-20010419
+3-D Secure XML-Signatures:
+* must declare XML-Signature namespace as the default namespace
+in the Signature element.
+* must use detached signatures.
+* must use X.509v3 certificates
+* must use following algorithms:
+Digest - http://www.w3.org/2000/09/xmldsig#sha1
+Encoding - http://www.w3.org/2000/09/xmldsig#base64
+MAC - http://www.w3.org/2000/09/xmldsig#hmac-sha1
+Signature - http://www.w3.org/2000/09/xmldsig#rsa-sha1
+Canonicalization - http://www.w3.org/TR/2001/REC-xml-c14n-20010315
+Transform - none
+* xmlns must be set to XML-Signature namespace URI
+WARNING: these URIs will change in the near future as
+the XML-Signature and W3C c14n spec is updated.
+See XML-Signature spec for details.
+The following definitions are not an exact copy of the DTD referenced
+above. They have been modified to reflect restrictions imposed by
+the 3-D Secure Protocol Specification. Signatures produced with the
+following definitions will still be compatible with the XML-DSIG
+specification.
+**********************************************************************
+-->
+<!ELEMENT Signature (SignedInfo, SignatureValue, KeyInfo)>
+<!ATTLIST Signature xmlns CDATA #FIXED "http://www.w3.org/2000/09/xmldsig#" Id ID #IMPLIED>
+<!ELEMENT SignatureValue (#PCDATA)>
+<!ATTLIST SignatureValue Id ID #IMPLIED>
+<!ELEMENT SignedInfo (CanonicalizationMethod, SignatureMethod, Reference+)>
+<!ATTLIST SignedInfo Id ID #IMPLIED>
+<!ELEMENT CanonicalizationMethod EMPTY>
+<!ATTLIST CanonicalizationMethod Algorithm CDATA #REQUIRED>
+<!ELEMENT SignatureMethod EMPTY>
+<!ATTLIST SignatureMethod Algorithm CDATA #REQUIRED>
+<!ELEMENT Reference (Transforms?, DigestMethod, DigestValue)>
+<!ATTLIST Reference Id ID #IMPLIED URI CDATA #IMPLIED Type CDATA #IMPLIED>
+<!ELEMENT Transforms (Transform+)>
+<!ELEMENT Transform EMPTY>
+<!ATTLIST Transform Algorithm CDATA #REQUIRED>
+<!ELEMENT DigestMethod EMPTY>
+<!ATTLIST DigestMethod Algorithm CDATA #REQUIRED>
+<!ELEMENT DigestValue (#PCDATA)>
+<!ELEMENT KeyInfo (X509Data)>
+<!ATTLIST KeyInfo Id ID #IMPLIED>
+<!ELEMENT X509Data ((X509IssuerSerial | X509SKI | X509SubjectName),
+X509Certificate)>
+<!ELEMENT X509IssuerSerial (X509IssuerName, X509SerialNumber)>
+<!ELEMENT X509IssuerName (#PCDATA)>
+<!ELEMENT X509SubjectName (#PCDATA)>
+<!ELEMENT X509SerialNumber (#PCDATA)>
+<!ELEMENT X509SKI (#PCDATA)>
+<!ELEMENT X509Certificate (#PCDATA)>

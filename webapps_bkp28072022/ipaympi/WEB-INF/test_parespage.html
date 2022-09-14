@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script type="text/javascript">
+// <!--
+function submitPareRes()
+{		
+document.forms.paresform.submit();
+}
+// -->
+</script>
+<title>ACS return to merchant..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body bgcolor="#FFFFFF" onLoad="submitPareRes();">
+<p align="center"><br>
+<b>
+<font face="Arial, Helvetica, sans-serif">Please return to merchant to complete the payment..</font></b></p>
+<table align="center">
+<tr>
+<td>
+<form name="paresform" action="$tds_termUrl$" method="POST">
+<input type="hidden" name="MD" value="$tds_md$">
+<input type="hidden" name="PaRes" value="$tds_PaRes$">
+<input type="submit" name="submitbtn" value="Return to merchant">
+</form>
+</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,16 @@
+13-Sep-2022 00:37:49.062 INFO [https-jsse-nio-8443-exec-2] org.apache.coyote.AbstractProcessor.parseHost The host [${ip}:${port}] is not valid
+ Note: further occurrences of request parsing errors will be logged at DEBUG level.
+	java.lang.IllegalArgumentException
+		at org.apache.tomcat.util.http.parser.Host.parse(Host.java:78)
+		at org.apache.tomcat.util.http.parser.Host.parse(Host.java:45)
+		at org.apache.coyote.AbstractProcessor.parseHost(AbstractProcessor.java:298)
+		at org.apache.coyote.http11.Http11Processor.prepareRequest(Http11Processor.java:793)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:375)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+		at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.lang.Thread.run(Thread.java:750)

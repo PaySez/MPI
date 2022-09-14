@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- Pattern to output the caller's file name and line number -->
+			<param name="ConversionPattern" value="%d{MMdd HHmmss,SSS} [%t] %-5p %c - %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMax" value="INFO" />
+		</filter>
+	</appender>
+	<appender name="R" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${catalina.base}/logs/iPayMPI.log"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<!-- Keep one backup file -->
+		<param name="MaxBackupIndex" value="10"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyyMMdd HHmmss,SSS} [%t] %-5p %c - %m%n"/>
+		</layout>
+	</appender>
+
+	<logger name="com.a2zss" additivity="false">
+		<level value="debug"/>
+		<appender-ref ref="R" />
+	</logger>
+	<logger name="org.apache" additivity="false">
+		<level value="error"/>
+		<appender-ref ref="R" />
+	</logger>
+	<!--  recommendations for production
+		<logger name="com.a2zss.mpi.visa3ds.VDSConnection" additivity="false">
+			<level value="info"/>
+			<appender-ref ref="R" />
+		</logger>
+		<logger name="com.a2zss.ipay.security.CertTrustVerifier" additivity="false">
+			<level value="info"/>
+			<appender-ref ref="R" />
+		</logger>
+		<logger name="com.a2zss.mpi.visa3ds.SimpleHttpConnection" additivity="false">
+			<level value="info"/>
+			<appender-ref ref="R" />
+		</logger>
+
+	-->
+
+	<root>
+		<priority value ="debug" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="R" />
+	</root>
+</log4j:configuration>

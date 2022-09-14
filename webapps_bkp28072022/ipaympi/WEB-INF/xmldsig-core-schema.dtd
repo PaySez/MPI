@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0074)http://www.w3.org/TR/2001/CR-xmldsig-core-20010419/xmldsig-core-schema.dtd -->
+<HTML><HEAD>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY><PRE>   &lt;!-- DTD for XML Signatures
+        http://www.w3.org/2000/09/xmldsig#
+        Joseph Reagle $last changed 20001215$ --&gt;
+
+
+   &lt;!--
+
+   The following entity declarations enable external/flexible content in
+   the Signature content model.
+
+   #PCDATA emulates schema string; when combined with element types it
+   emulates schema's mixed content type.
+
+   %foo.ANY permits the user to include their own element types from
+   other namespaces, for example:
+     &lt;!ENTITY % KeyValue.ANY '| ecds:ECDSAKeyValue'&gt;
+     ...
+     &lt;!ELEMENT ecds:ECDSAKeyValue (#PCDATA)  &gt;
+
+   --&gt;
+
+   &lt;!ENTITY % Object.ANY ''&gt;
+   &lt;!ENTITY % Method.ANY ''&gt;
+   &lt;!ENTITY % Transform.ANY ''&gt;
+   &lt;!ENTITY % SignatureProperty.ANY ''&gt;
+   &lt;!ENTITY % KeyInfo.ANY ''&gt;
+   &lt;!ENTITY % KeyValue.ANY ''&gt;
+   &lt;!ENTITY % PGPData.ANY ''&gt;
+   &lt;!ENTITY % X509Data.ANY ''&gt;
+   &lt;!ENTITY % SPKIData.ANY ''&gt;
+
+
+
+   &lt;!-- Start Core Signature declarations, these should NOT be altered --&gt;
+
+   &lt;!ELEMENT Signature (SignedInfo, SignatureValue, KeyInfo?, Object*)  &gt;
+   &lt;!ATTLIST Signature  
+   	xmlns	CDATA	#FIXED 'http://www.w3.org/2000/09/xmldsig#'
+   	Id  	ID	#IMPLIED &gt;
+
+   &lt;!ELEMENT SignatureValue (#PCDATA) &gt;
+   &lt;!ATTLIST SignatureValue  
+             Id  ID      #IMPLIED&gt;
+
+   &lt;!ELEMENT SignedInfo (CanonicalizationMethod, 
+   	SignatureMethod,  Reference+)  &gt;
+   &lt;!ATTLIST SignedInfo  
+   	Id	 ID 	 #IMPLIED 
+    &gt;
+
+   &lt;!ELEMENT CanonicalizationMethod (#PCDATA %Method.ANY;)* &gt; 
+   &lt;!ATTLIST CanonicalizationMethod 
+   	Algorithm CDATA #REQUIRED &gt; 
+
+   &lt;!ELEMENT SignatureMethod (#PCDATA|HMACOutputLength %Method.ANY;)* &gt;
+   &lt;!ATTLIST SignatureMethod 
+   	Algorithm CDATA #REQUIRED &gt; 
+
+   &lt;!ELEMENT Reference (Transforms?, DigestMethod, DigestValue)  &gt;
+   &lt;!ATTLIST Reference  
+   	Id	ID	#IMPLIED
+   	URI	CDATA	#IMPLIED
+   	Type	CDATA	#IMPLIED&gt;
+
+
+   &lt;!ELEMENT Transforms (Transform+)&gt;
+
+   &lt;!ELEMENT Transform (#PCDATA|XPath %Transform.ANY;)* &gt;
+   &lt;!ATTLIST Transform 
+   	Algorithm    CDATA    #REQUIRED &gt;
+
+   &lt;!ELEMENT XPath (#PCDATA) &gt;
+
+   &lt;!ELEMENT DigestMethod (#PCDATA %Method.ANY;)* &gt;
+   &lt;!ATTLIST DigestMethod  
+   	Algorithm		CDATA	#REQUIRED &gt;
+
+   &lt;!ELEMENT DigestValue  (#PCDATA)  &gt;
+
+   &lt;!ELEMENT KeyInfo	(#PCDATA|KeyName|KeyValue|RetrievalMethod|
+               X509Data|PGPData|SPKIData|MgmtData %KeyInfo.ANY;)* &gt;
+   &lt;!ATTLIST KeyInfo  
+   	Id	ID	 #IMPLIED &gt;
+
+   &lt;!-- Key Information --&gt;
+
+   &lt;!ELEMENT KeyName (#PCDATA) &gt;
+   &lt;!ELEMENT KeyValue (#PCDATA|DSAKeyValue|RSAKeyValue %KeyValue.ANY;)* &gt;
+   &lt;!ELEMENT MgmtData (#PCDATA) &gt;
+
+   &lt;!ELEMENT RetrievalMethod (Transforms?) &gt;
+   &lt;!ATTLIST RetrievalMethod
+      URI	CDATA #REQUIRED 
+      Type	CDATA #IMPLIED &gt; 
+
+   &lt;!-- X.509 Data --&gt;
+
+   &lt;!ELEMENT X509Data ((X509IssuerSerial | X509SKI | X509SubjectName |
+                        X509Certificate)+ | X509CRL %X509Data.ANY;)&gt;
+   &lt;!ELEMENT X509IssuerSerial (X509IssuerName, X509SerialNumber) &gt;
+   &lt;!ELEMENT X509IssuerName (#PCDATA) &gt;
+   &lt;!ELEMENT X509SubjectName (#PCDATA) &gt;
+   &lt;!ELEMENT X509SerialNumber (#PCDATA) &gt;
+   &lt;!ELEMENT X509SKI (#PCDATA) &gt;
+   &lt;!ELEMENT X509Certificate (#PCDATA) &gt;
+   &lt;!ELEMENT X509CRL (#PCDATA) &gt;
+
+   &lt;!-- PGPData --&gt;
+
+   &lt;!ELEMENT PGPData ((PGPKeyID, PGPKeyPacket?) | (PGPKeyPacket) %PGPData.ANY;) &gt;
+   &lt;!ELEMENT PGPKeyPacket  (#PCDATA)  &gt;
+   &lt;!ELEMENT PGPKeyID  (#PCDATA)  &gt;
+
+   &lt;!-- SPKI Data --&gt;
+
+   &lt;!ELEMENT SPKIData (SPKISexp %SPKIData.ANY;)  &gt;
+   &lt;!ELEMENT SPKISexp  (#PCDATA)  &gt;
+
+   &lt;!-- Extensible Content --&gt;
+
+   &lt;!ELEMENT Object (#PCDATA|Signature|SignatureProperties|Manifest %Object.ANY;)* &gt;
+   &lt;!ATTLIST Object  
+   	Id	ID	#IMPLIED 
+   	MimeType	CDATA	#IMPLIED 
+   	Encoding	CDATA	#IMPLIED &gt;
+
+   &lt;!ELEMENT Manifest (Reference+)  &gt;
+   &lt;!ATTLIST Manifest  
+   	Id	ID	#IMPLIED &gt;
+
+   &lt;!ELEMENT SignatureProperties (SignatureProperty+)  &gt;
+   &lt;!ATTLIST SignatureProperties  
+   	Id	ID	 #IMPLIED  &gt;
+
+   &lt;!ELEMENT SignatureProperty (#PCDATA %SignatureProperty.ANY;)* &gt;
+   &lt;!ATTLIST SignatureProperty  
+   	Target 	CDATA	 #REQUIRED
+   	Id	ID	 #IMPLIED  &gt;
+
+   &lt;!-- Algorithm Parameters --&gt;
+
+   &lt;!ELEMENT HMACOutputLength (#PCDATA) &gt;
+
+   &lt;!ELEMENT DSAKeyValue (P, Q, G, Y, J?, (Seed, PgenCounter)?) &gt; 
+   &lt;!ELEMENT P (#PCDATA) &gt;
+   &lt;!ELEMENT Q (#PCDATA) &gt;
+   &lt;!ELEMENT G (#PCDATA) &gt;
+   &lt;!ELEMENT Y (#PCDATA) &gt;
+   &lt;!ELEMENT J (#PCDATA) &gt;
+   &lt;!ELEMENT Seed (#PCDATA) &gt;
+   &lt;!ELEMENT PgenCounter (#PCDATA) &gt;
+
+   &lt;!ELEMENT RSAKeyValue (Modulus, Exponent) &gt; 
+   &lt;!ELEMENT Modulus (#PCDATA) &gt;
+   &lt;!ELEMENT Exponent (#PCDATA) &gt;
+
+</PRE></BODY></HTML>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="32px" viewBox="0 0 44 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>i-debit_card</title>
+    <g id="🔵-Payment_Method" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1" transform="translate(-863.000000, -383.000000)" fill-rule="nonzero">
+            <g id="Group-8" transform="translate(792.000000, 190.000000)">
+                <g id="Group-10" transform="translate(0.000000, 173.000000)">
+                    <g id="i-debit_card" transform="translate(72.000000, 21.000000)">
+                        <path d="M42,26 C42,28.208 40.209,30 38,30 L4,30 C1.791,30 0,28.208 0,26 L0,4 C0,1.79 1.791,0 4,0 L38,0 C40.209,0 42,1.79 42,4 L42,26 Z" id="Path" stroke="#000000" stroke-width="1.5" fill="#FFFFFF"></path>
+                        <path d="M13,12 C13,12.553 12.553,13 12,13 L7,13 C6.447,13 6,12.553 6,12 L6,8 C6,7.447 6.447,7 7,7 L12,7 C12.553,7 13,7.447 13,8 L13,12 Z M12,17 L6,17 L6,19 L12,19 L12,17 Z M20,22 L6,22 L6,24 L20,24 L20,22 Z M20,17 L14,17 L14,19 L20,19 L20,17 Z M28,17 L22,17 L22,19 L28,19 L28,17 Z M36,17 L30,17 L30,19 L36,19 L36,17 Z" id="Shape" fill="#3E6799"></path>
+                        <polygon id="Path" fill="#3E6799" points="17 7 36 7 36 11 17 11"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

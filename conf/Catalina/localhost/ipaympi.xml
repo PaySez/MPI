@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiResourceLocking="false" privileged="true" crossContext="false" >
+<Parameter name="secret" value="4884jdlojdj389ue" override="false"/>
+<Resource name="jdbc/mpids" auth="Container" type="javax.sql.DataSource" maxActive="50"
+maxIdle="10" maxWait="10000"
+initialSize="5" validationQuery="SELECT version()" removeAbandoned="true"
+removeAbandonedTimeout="300"
+logAbandoned="true" testOnBorrow="true" testWhileIdle="true"
+timeBetweenEvictionRunsMillis="30000"
+username="pgappind"
+password="RM$ue6tv"
+driverClassName="com.mysql.jdbc.Driver"
+url="jdbc:mysql://chnpgdevapp3tr.credopay.net:3306/mpi?useUnicode=true&amp;characterEncoding=UTF-8&amp;useGmtMillisForDatetimes=true&amp;serverTimezone=Asia/Calcutta&amp;useTimezone=true&amp;useLegacyDatetimeCode=false&amp;useJDBCCompliantTimezoneShift=true&amp;enableQueryTimeouts=true&amp;socketTimeout=45000&amp;connectTimeout=15000"/>
+/>
+</Context>

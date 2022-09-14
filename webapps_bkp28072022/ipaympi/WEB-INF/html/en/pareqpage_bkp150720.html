@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+// <!--
+function submitPareReq()
+{		
+document.forms.pareqform.submit();
+}
+// -->
+</script>
+<title>iPay3DSMPI processing, please wait..</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body bgcolor="#FFFFFF">
+	<p align="center">
+		<br> <b> <font face="Arial, Helvetica, sans-serif">
+				Your card participates in ThreeDSecure authentication<br> In
+				order to complete payment, please proceed to authentication in Your
+				bank..
+		</font></b>
+	</p>
+	<p align="center">
+		<font size="2" face="Arial," helvetica="Helvetica">Merchant: <b>$merchant.name$, $merchant.terminal_id_code$</b></font>
+	</p>
+	<p align="center">
+		<font size="2" face="Arial," helvetica="Helvetica">Time: <b>$datetime$</b></font><BR>
+	</p>
+	<table align="center">
+		<tr>
+			<td>
+				<form name="pareqform" action="$IssuerACSURL$" method="POST">
+					<input type="hidden" name="MD" value="$tds_md$"> <input
+						type="hidden" name="TermUrl" value="$tds_termUrl$"> <input
+						type="hidden" name="PaReq" value="$tds_PaReq$"> <input
+						class="button" type="submit" name="submitbtn"
+						value="Proceed to authentication">
+				</form>
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript">
+	submitPareReq();
+</script>
+</body>
+</html>
